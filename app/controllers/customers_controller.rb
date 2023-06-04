@@ -1,6 +1,7 @@
 class CustomersController < ApplicationController
 
     before_action :set_customer, only: [:show, :update, :destroy]
+    skip_before_action :authorize, only: :count
 
     def index
       customers = Customer.all
@@ -39,6 +40,19 @@ class CustomersController < ApplicationController
     #   customers = Customer.joins(:punchcards).group(:id).having('COUNT(punchcards) >= ?', params[:n].to_i)
     #   render json: customers
     # end
+
+    def count
+        punchcards = Punchcard.where('count > ?', params[:n])
+        
+        customers = punchcards.map { |p| p.customer }.uniq
+
+        if customers.present? 
+          render json: customers
+        else 
+          render json: { error: "Punchcard not found"}, status: :not_found
+        end
+    
+    end
 
     private 
 

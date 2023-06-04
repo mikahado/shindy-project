@@ -13,9 +13,8 @@ class PunchcardsController < ApplicationController
     end
 
     def create 
-      byebug
-      # punchcard = @current_user.punchcards.create!(punchcard_params)
-      # render json: punchcard, status: :created 
+      punchcard = @current_user.punchcards.create!(punchcard_params)
+      render json: punchcard, status: :created 
     end
 
     def update
