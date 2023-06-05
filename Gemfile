@@ -50,3 +50,10 @@ group :test do
 end
 
 gem "active_model_serializers", "~> 0.10.12"
+
+
+begin
+  require 'minitest/autorun'
+rescue LoadError => e
+  raise e unless ENV['RAILS_ENV'] == "production"
+end
