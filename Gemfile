@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.2.2"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
+gem 'rails', '~> 7.0.5'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.5.3'
 # Use Puma as the app server
@@ -51,9 +51,10 @@ end
 
 gem "active_model_serializers", "~> 0.10.12"
 
+gem 'globalid', '~> 1.0'
 
-begin
-  require 'minitest/autorun'
-rescue LoadError => e
-  raise e unless ENV['RAILS_ENV'] == "production"
-end
+# begin
+#   require 'minitest/autorun'
+# rescue LoadError => e
+#   raise e unless ENV['RAILS_ENV'] == "production"
+# end
